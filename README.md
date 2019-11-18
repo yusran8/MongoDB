@@ -39,12 +39,14 @@
 3. Pada salah satu config node, masuk ke mongoDB shell 
    `mongo 192.168.17.105:27019 -u mongo-admin -p --authenticationDatabase admin`
    dengan password = "password"
-4. inisialisasi replika set `rs.initiate( { _id: "configReplSet", configsvr: true, members: [ { _id: 0, host: "192.168.17.105:27019" }, { _id: 1, host: "192.168.17.106:27019" } ] } )`
+4. inisialisasi replika set 
+   ```rs.initiate( { _id: "configReplSet", configsvr: true, members: [ { _id: 0, host: "192.168.17.105:27019" }, { _id: 1, host:          "192.168.17.106:27019" } ] } )
+   ```
    - jika berhasil akan muncul pesan `{ "ok" : 1 }`
 
 ### Konfigurasi query router
 
-1. Buat sebuah file `/etc/mongos.conf`, dan isikan seperti pada di bawah:
+1. Buat sebuah file "/etc/mongos.conf", dan isikan seperti pada di bawah:
    ```
    # where to write logging data
     systemLog:
@@ -92,7 +94,8 @@
 4. Enable mongos.service agar berjalan otomatis saat reboot
    ```
    sudo systemctl enable mongos.service
-   sudo systemctl start mongos ```
+   sudo systemctl start mongos 
+   ```
 5. Pastikan mongos berjalan `systemctl status mongos`
 
 ### Mengatur Shard node
@@ -104,12 +107,14 @@
       sharding:
      clusterRole: "shardsvr"
      ```
+   - restart shard `sudo service mongod restart`
 2. Pada salah satu shard server connect ke query route `mongo 192.168.17.107:27017 -u mongo-admin -p --authenticationDatabase admin` dengan password = "pasword"
 3. tambahkan setiap shard dari mongo interface
    ```
    sh.addShard( "192.168.17.108:27017" )
    sh.addShard( "192.168.17.109:27017" )
    sh.addShard( "192.168.17.110:27017" )
+   ```
 
 ### Sharding database
 1. masuk ke qouery router `mongo 192.168.17.107:27017 -u mongo-admin -p --authenticationDatabase admin`
@@ -121,3 +126,4 @@
 ### Testing 
 1. import dataset `mongoimport --host=192.168.17.107 -d books -c books --type csv --file books3.csv --headerline`
 2. masuk ke query router, gunakan db yang diimport tadi kemudian ketikkan perintah `db.books.getShardDistribution()`
+

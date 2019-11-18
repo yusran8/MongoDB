@@ -39,9 +39,8 @@
 3. Pada salah satu config node, masuk ke mongoDB shell 
    `mongo 192.168.17.105:27019 -u mongo-admin -p --authenticationDatabase admin`
    dengan password = "password"
-4. inisialisasi replika set 
-   ```rs.initiate( { _id: "configReplSet", configsvr: true, members: [ { _id: 0, host: "192.168.17.105:27019" }, { _id: 1, host:             "192.168.17.106:27019" } ] } )
-   ```
+4. inisialisasi replika set ```rs.initiate( { _id: "configReplSet", configsvr: true, members: [ { _id: 0, host: "192.168.17.105:27019" }, { _id: 1, host:             "192.168.17.106:27019" } ] } )```
+   
    - jika berhasil akan muncul pesan `{ "ok" : 1 }`
 
 ### Konfigurasi query router

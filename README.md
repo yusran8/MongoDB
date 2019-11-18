@@ -126,4 +126,4 @@
 ### Testing 
 1. import dataset `mongoimport --host=192.168.17.107 -d books -c books --type csv --file books3.csv --headerline`
 2. masuk ke query router, gunakan db yang diimport tadi kemudian ketikkan perintah `db.books.getShardDistribution()`
-
+![sharding](https://github.com/yusran8/MongoDB/blob/master/pict/shardDistribusi.png) 

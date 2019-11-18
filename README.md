@@ -62,7 +62,7 @@
     sharding:
       configDB: configReplSet/192.168.17.105:27019,192.168.17.106:27019    
      ```
-2. But sebuah fule systemd unit untuk mongo `Create a new systemd unit file for mongos called /lib/systemd/system/mongos.service` dengan isi:
+2. Buat sebuah fule systemd unit untuk mongo `/lib/systemd/system/mongos.service` dengan isi:
    ```
     [Unit]
     Description=Mongo Cluster Router
